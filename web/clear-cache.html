@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>清除缓存 - 五毛仔学技术</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        .container {
+            text-align: center;
+            background: white;
+            padding: 50px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            max-width: 500px;
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 28px;
+        }
+        .message {
+            color: #52c41a;
+            font-size: 20px;
+            margin: 30px 0;
+            font-weight: bold;
+        }
+        .info {
+            color: #666;
+            font-size: 14px;
+            line-height: 1.6;
+            margin: 20px 0;
+        }
+        a {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 12px 30px;
+            background: #ff7700;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-size: 16px;
+            transition: background 0.3s;
+        }
+        a:hover {
+            background: #ff9933;
+        }
+        .icon {
+            font-size: 60px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="icon">✨</div>
+        <h1>清除布局缓存</h1>
+        <div class="message" id="message">正在清除缓存...</div>
+        <div class="info">
+            已清除所有保存的侧边栏宽度设置<br>
+            新的布局配置将在下次访问时生效
+        </div>
+        <a href="index.html">返回主页</a>
+    </div>
+
+    <script>
+        // 清除所有保存的宽度设置
+        localStorage.removeItem('leftSidebarWidth');
+        localStorage.removeItem('rightSidebarWidth');
+        localStorage.removeItem('gridTemplateColumns');
+        
+        // 清除所有 localStorage（彻底清除）
+        localStorage.clear();
+        
+        document.getElementById('message').textContent = '✓ 缓存清除成功！';
+        
+        // 1.5秒后自动跳转
+        setTimeout(() => {
+            window.location.href = 'index.html';
+        }, 1500);
+    </script>
+</body>
+</html>
+

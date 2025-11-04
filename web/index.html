@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>五毛仔学技术</title>
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Markdown解析库 -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <!-- 代码高亮 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.9.0/styles/github.css">
+    <script src="https://cdn.jsdelivr.net/npm/highlight.js@11.9.0/highlight.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/highlight.js@11.9.0/languages/cpp.min.js"></script>
+</head>
+<body>
+    <!-- 顶部导航栏 -->
+    <header class="top-nav">
+        <div class="nav-container">
+            <div class="logo">
+                <span class="logo-icon">🌐</span>
+                <span class="logo-text">五毛仔学技术</span>
+            </div>
+            <div class="search-box">
+                <input type="text" placeholder="Search" id="searchInput">
+                <span class="search-shortcut">Ctrl K</span>
+            </div>
+            <nav class="main-nav">
+                <a href="#" class="nav-item active" data-category="home">首页</a>
+                <a href="#" class="nav-item" data-category="career">C++语法</a>
+                <a href="#" class="nav-item" data-category="cpp">操作系统</a>
+                <a href="#" class="nav-item" data-category="project">计算机网络</a>
+                <a href="#" class="nav-item" data-category="communication">分布式理论</a>
+                <a href="#" class="nav-item" data-category="distributed">网络编程</a>
+                <a href="#" class="nav-item" data-category="golang">驱动编程</a>
+                <a href="#" class="nav-item" data-category="linux">ROS2机器人</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="main-container" id="mainContainer">
+        <!-- 首页欢迎内容 -->
+        <div class="welcome-page" id="welcomePage">
+            <div class="welcome-content">
+                <h1 class="welcome-title">你好</h1>
+                <h2 class="welcome-subtitle">欢迎来到五毛仔学技术的网站<br>请在右上角菜单中看看吧。</h2>
+                <p class="welcome-tips">如果您在学习这些专栏的过程中有任何问题，可以在关注微信公众号反馈。</p>
+            </div>
+        </div>
+
+        <!-- 文档浏览模式 -->
+        <div class="doc-mode" id="docMode" style="display: none;">
+            <!-- 左侧边栏 -->
+            <aside class="left-sidebar" id="leftSidebar">
+                <div class="sidebar-title">目录导航</div>
+                <nav class="doc-nav" id="docNav">
+                    <!-- 动态生成 -->
+                </nav>
+            </aside>
+
+            <!-- 左侧拖动分隔条 -->
+            <div class="resizer" id="leftResizer"></div>
+
+            <!-- 主内容区 -->
+            <main class="content-area" id="contentArea">
+                <article class="markdown-content" id="markdownContent">
+                    <!-- Markdown内容渲染区 -->
+                </article>
+            </main>
+
+            <!-- 右侧拖动分隔条 -->
+            <div class="resizer" id="rightResizer"></div>
+
+            <!-- 右侧边栏 -->
+            <aside class="right-sidebar" id="rightSidebar">
+                <div class="sidebar-title">页面导航</div>
+                <nav class="page-nav" id="pageNav">
+                    <!-- 动态生成 -->
+                </nav>
+            </aside>
+        </div>
+    </div>
+
+    <!-- 底部备案信息 -->
+    <footer class="footer" id="footer">
+        <p>本系列教程版权所有，未经许可，不得以任何形式在网络上转载或盗版。</p>
+    </footer>
+
+    <!-- 移动端菜单按钮 -->
+    <button class="mobile-menu-btn" id="mobileMenuBtn">
+        ☰
+    </button>
+
+    <script src="js/config.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
+
