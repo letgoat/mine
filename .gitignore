@@ -1,0 +1,84 @@
+# ==================== 环境目录 ====================
+# d2l 学习环境
+d2l/
+
+# ==================== IDE 和编辑器 ====================
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# ==================== Python ====================
+# 字节码文件
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# 虚拟环境
+venv/
+env/
+ENV/
+.venv
+
+# 分发/打包
+*.egg-info/
+dist/
+build/
+*.egg
+
+# 环境变量
+.env
+.env.local
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# ==================== C++ ====================
+# 编译产物
+*.o
+*.a
+*.so
+*.dylib
+*.exe
+*.out
+
+# 构建目录
+build/
+cmake-build-*/
+*.cmake
+CMakeCache.txt
+CMakeFiles/
+
+# ==================== Web ====================
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# 日志文件
+*.log
+
+# ==================== 系统文件 ====================
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Linux
+*~
+
+# ==================== 临时文件 ====================
+*.tmp
+*.temp
+*.bak
+*.backup
+

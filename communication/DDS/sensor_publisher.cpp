@@ -77,7 +77,9 @@ float generate_temperature() {
 }
 
 int main(int argc, char* argv[]) {
-    std::string sensor_id = "sensor_001";
+    std::string sen
+    
+    sor_id = "sensor_001";
     
     if (argc > 1) {
         sensor_id = argv[1];
