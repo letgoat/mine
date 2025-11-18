@@ -1,0 +1,9 @@
+# LLM API客户端
+openai>=2.0.0
+
+# HTTP 请求库
+requests>=2.31.0
+
+# Tavily 搜索 API
+tavily-python>=0.3.0
+
