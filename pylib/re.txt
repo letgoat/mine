@@ -1,0 +1,119 @@
+常用元字符
+.       匹配任意字符（除了换行符）
+\d      匹配数字 [0-9]
+\D      匹配非数字
+\w      匹配字母、数字、下划线 [a-zA-Z0-9_]
+\W      匹配非字母、数字、下划线
+\s      匹配空白字符（空格、制表符、换行等）
+\S      匹配非空白字符
+^       匹配字符串开头
+$       匹配字符串结尾
+[]      字符集，匹配其中任意一个字符
+|       或，匹配多个模式之一
+
+量词
+*       匹配前一个字符0次或多次
++       匹配前一个字符1次或多次
+?       匹配前一个字符0次或1次
+{m}     匹配前一个字符m次
+{m,n}   匹配前一个字符m到n次
+
+
+re模块核心函数
+re.match() --从字符串开头匹配
+
+import re
+# 从字符串开头匹配
+result = re.match(r'Hello', 'Hello, world!')
+if result:
+    print("匹配成功:", result.group())  # 输出: Hello
+else:
+    print("匹配失败")
+
+# 使用分组
+result = re.match(r'(\d+)-(\d+)-(\d+)', '2023-10-25')
+if result:
+    print("完整匹配:", result.group(0))    # 2023-10-25
+    print("第一组:", result.group(1))      # 2023
+    print("第二组:", result.group(2))      # 10
+    print("第三组:", result.group(3))      # 25
+    print("所有分组:", result.groups())    # ('2023', '10', '25')
+	
+
+re.search() --搜索整个字符串
+
+# 在字符串中搜索第一个匹配
+text = "我的电话是: 138-1234-5678"
+result = re.search(r'\d{3}-\d{4}-\d{4}', text)
+if result:
+    print("找到电话号码:", result.group())  # 138-1234-5678
+
+# 搜索邮箱
+text = "联系我: example@email.com 或 test@site.org"
+result = re.search(r'\w+@\w+\.\w+', text)
+if result:
+    print("找到邮箱:", result.group())  # example@email.com
+	
+	
+re.findall() --找到所有匹配
+
+# 找到所有数字
+text = "价格: 100元, 折扣: 20元, 运费: 15元"
+numbers = re.findall(r'\d+', text)
+print("所有数字:", numbers)  # ['100', '20', '15']
+
+# 找到所有邮箱
+text = "邮箱: a@b.com, c@d.org, e@f.net"
+emails = re.findall(r'\w+@\w+\.\w+', text)
+print("所有邮箱:", emails)  # ['a@b.com', 'c@d.org', 'e@f.net']
+
+# 分组查找
+text = "张三:30, 李四:25, 王五:35"
+pairs = re.findall(r'(\w+):(\d+)', text)
+print("姓名-年龄对:", pairs)  # [('张三', '30'), ('李四', '25'), ('王五', '35')]
+
+
+re.finditer() --返回迭代器
+
+# 对于大量匹配，finditer 更节省内存
+text = "A:100 B:200 C:300"
+for match in re.finditer(r'(\w+):(\d+)', text):
+    print(f"键: {match.group(1)}, 值: {match.group(2)}")
+# 输出:
+# 键: A, 值: 100
+# 键: B, 值: 200
+# 键: C, 值: 300
+
+
+re.sub() --替换字符串
+
+# 简单替换
+text = "今天是 2023-10-25"
+new_text = re.sub(r'\d{4}-\d{2}-\d{2}', 'XXXX-XX-XX', text)
+print(new_text)  # 今天是 XXXX-XX-XX
+
+# 使用函数进行替换
+def mask_phone(match):
+    phone = match.group()
+    return phone[:3] + '****' + phone[-4:]
+
+text = "电话: 13812345678"
+new_text = re.sub(r'\d{11}', mask_phone, text)
+print(new_text)  # 电话: 138****5678
+
+# 使用反向引用
+text = "hello world"
+new_text = re.sub(r'(\w+) (\w+)', r'\2 \1', text)
+print(new_text)  # world hello
+
+
+re.split() --使用正则表达式分割
+# 按多种分隔符分割
+text = "苹果,香蕉;橙子 梨子"
+items = re.split(r'[,; ]', text)
+print("分割结果:", items)  # ['苹果', '香蕉', '橙子', '梨子']
+
+# 保留分隔符
+text = "Hello,World!Python"
+items = re.split(r'(\W+)', text)
+print("包含分隔符:", items)  # ['Hello', ',', 'World', '!', 'Python']

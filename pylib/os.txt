@@ -1,0 +1,163 @@
+import os
+
+# 获取当前工作目录
+current_dir = os.getcwd()
+print(f"当前工作目录: {current_dir}")
+
+# 改变当前工作目录
+os.chdir('/path/to/new/directory')
+
+# 安全地拼接路径（自动处理不同操作系统的路径分隔符）
+file_path = os.path.join('folder', 'subfolder', 'file.txt')
+print(file_path)  # 输出: folder/subfolder/file.txt (Linux/Mac) 或 folder\subfolder\file.txt (Windows)
+
+path = "/home/user/documents/file.txt"
+
+# 获取路径的目录部分
+dir_name = os.path.dirname(path)
+print(f"目录: {dir_name}")  # 输出: /home/user/documents
+
+# 获取文件名
+file_name = os.path.basename(path)
+print(f"文件名: {file_name}")  # 输出: file.txt
+
+# 分离文件名和扩展名
+name, ext = os.path.splitext(file_name)
+print(f"文件名: {name}, 扩展名: {ext}")  # 输出: 文件名: file, 扩展名: .txt
+
+# 列出指定目录下的所有文件和子目录
+items = os.listdir('.')
+print(f"当前目录内容: {items}")
+
+# 使用 os.scandir() (更高效，推荐)
+with os.scandir('.') as entries:
+    for entry in entries:
+        print(f"{entry.name} - 是否是文件: {entry.is_file()}")
+		
+# 创建单个目录
+os.mkdir('new_directory')
+
+# 递归创建多级目录
+os.makedirs('parent/child/grandchild', exist_ok=True)
+
+# 删除空目录
+os.rmdir('empty_directory')
+
+# 递归删除目录及其内容 (谨慎使用!)
+import shutil
+shutil.rmtree('directory_to_remove')
+
+path = "some_path"
+
+# 检查路径是否存在
+if os.path.exists(path):
+    print(f"{path} 存在")
+    
+    # 检查是否是文件
+    if os.path.isfile(path):
+        print(f"{path} 是一个文件")
+    
+    # 检查是否是目录
+    if os.path.isdir(path):
+        print(f"{path} 是一个目录")
+    
+    # 检查是否是链接
+    if os.path.islink(path):
+        print(f"{path} 是一个符号链接")
+		
+# 重命名文件或目录
+os.rename('old_name.txt', 'new_name.txt')
+
+# 删除文件
+os.remove('file_to_delete.txt')
+
+# 获取文件大小
+file_size = os.path.getsize('file.txt')
+print(f"文件大小: {file_size} 字节")
+
+# 获取文件修改时间
+import time
+mod_time = os.path.getmtime('file.txt')
+print(f"最后修改时间: {time.ctime(mod_time)}")
+
+# 获取所有环境变量
+env_vars = os.environ
+print("环境变量:", dict(env_vars))
+
+# 获取特定环境变量
+home_dir = os.environ.get('HOME')  # Linux/Mac
+# 或
+home_dir = os.environ.get('USERPROFILE')  # Windows
+
+# 设置环境变量 (仅在当前进程有效)
+os.environ['MY_VAR'] = 'my_value'
+
+# 获取当前用户名
+username = os.getlogin()
+print(f"用户名: {username}")
+
+# 获取进程ID
+pid = os.getpid()
+print(f"当前进程ID: {pid}")
+
+# 获取操作系统名称
+print(f"操作系统: {os.name}")  # 'posix', 'nt', 'java'
+
+# 更详细的平台信息
+import platform
+print(f"系统平台: {platform.system()}")
+print(f"平台版本: {platform.release()}")
+
+# 执行系统命令
+result = os.system('ls -l')  # 返回退出状态码
+
+# 获取命令输出 (Python 3.5+)
+import subprocess
+output = subprocess.getoutput('ls -l')
+print(output)
+
+# 在新进程中运行程序
+os.spawnl(os.P_NOWAIT, '/bin/ls', 'ls', '-l')
+
+# 更现代的替代方案是使用 subprocess 模块
+import subprocess
+subprocess.run(['ls', '-l'])
+
+# 更改文件权限 (Unix-like 系统)
+os.chmod('script.py', 0o755)  # 设置可执行权限
+
+# 更改文件所有者和组 (Unix-like 系统)
+# os.chown('file.txt', uid, gid)
+
+# 遍历目录树
+for root, dirs, files in os.walk('.'):
+    print(f"当前目录: {root}")
+    print(f"子目录: {dirs}")
+    print(f"文件: {files}")
+    print("-" * 40)
+	
+# 标准化路径
+path = "folder/../folder/./file.txt"
+normalized = os.path.normpath(path)
+print(f"标准化路径: {normalized}")
+
+# 获取绝对路径
+abs_path = os.path.abspath('relative/path')
+print(f"绝对路径: {abs_path}")
+
+# 创建临时文件
+import tempfile
+
+# 创建临时文件 (自动删除)
+with tempfile.NamedTemporaryFile(mode='w+', delete=True) as tmp:
+    tmp.write('临时内容')
+    tmp.seek(0)
+    print(tmp.read())
+
+# 创建临时目录
+with tempfile.TemporaryDirectory() as tmpdir:
+    print(f"临时目录: {tmpdir}")
+    # 在临时目录中工作
+	
+
+
